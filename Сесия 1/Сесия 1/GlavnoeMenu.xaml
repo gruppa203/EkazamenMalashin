@@ -1,0 +1,18 @@
+﻿<Window x:Class="Сесия_1.GlavnoeMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Сесия_1"
+        mc:Ignorable="d"
+        Title="GlavnoeMenu" Height="450" Width="800">
+    <Grid x:Name="Perecluchat_Stranic" MinWidth="800" MinHeight="450" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="52*"/>
+            <RowDefinition Height="173*"/>
+        </Grid.RowDefinitions>
+        <Frame x:Name="GlavnayzPerehod"  Grid.Row="1" AutomationProperties.IsRowHeader="True"/>
+        <Label Content="ООО 'Складовый'" HorizontalAlignment="Left" VerticalAlignment="Top" Height="77" Width="313" FontFamily="Showcard Gothic" FontSize="30" />
+
+    </Grid>
+</Window>

@@ -1,0 +1,26 @@
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\obj\Debug\Stranic\Vxod.g.cs
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\obj\Debug\App.g.cs
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\obj\Debug\Сесия 1_MarkupCompile.cache
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\obj\Debug\Сесия 1_MarkupCompile.lref
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\bin\Debug\Сесия 1.exe.config
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\bin\Debug\Сесия 1.exe
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\bin\Debug\Сесия 1.pdb
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\obj\Debug\Stranic\Vxod.baml
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\obj\Debug\Сесия 1.g.resources
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\obj\Debug\Сесия_1.Properties.Resources.resources
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\obj\Debug\Сесия 1.csproj.GenerateResource.cache
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\obj\Debug\Сесия 1.csproj.CoreCompileInputs.cache
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\obj\Debug\Сесия 1.exe
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\obj\Debug\Сесия 1.pdb
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\obj\Debug\Stranic\Sclad.g.cs
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\obj\Debug\App.baml
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\obj\Debug\Stranic\Sclad.baml
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\bin\Debug\EntityFramework.dll
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\bin\Debug\EntityFramework.xml
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\obj\Debug\Сесия 1_Content.g.cs
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\obj\Debug\Сесия 1.csproj.CopyComplete
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\obj\Debug\GlavnoeMenu.g.cs
+C:\Users\Преподаватель\Desktop\Сесия 1\Сесия 1\obj\Debug\GlavnoeMenu.baml

@@ -1,0 +1,524 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище bdMalashinModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ismerenie">
+          <Key>
+            <PropertyRef Name="Ismerenie_Code" />
+          </Key>
+          <Property Name="Ismerenie_Code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ismerenie" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kategoria">
+          <Key>
+            <PropertyRef Name="Kategoria_Code" />
+          </Key>
+          <Property Name="Kategoria_Code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kategoria" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Polsavotel">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Familia" Type="nvarchar" MaxLength="90" Nullable="false" />
+          <Property Name="Imya" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ochestvo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Vxod_Code" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Postovshik">
+          <Key>
+            <PropertyRef Name="Postovshik_Code" />
+          </Key>
+          <Property Name="Postovshik_Code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Postovshik" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proisvoditel">
+          <Key>
+            <PropertyRef Name="Proisvoditel_Code" />
+          </Key>
+          <Property Name="Proisvoditel_Code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Proisvoditel" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Role_Code" />
+          </Key>
+          <Property Name="Role_Code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sclad">
+          <Key>
+            <PropertyRef Name="Artickl" />
+          </Key>
+          <Property Name="Artickl" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Naimenovanie" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="Ismerenie_Code" Type="int" Nullable="false" />
+          <Property Name="Stoimost" Type="int" Nullable="false" />
+          <Property Name="Skidca_Maximum" Type="int" Nullable="false" />
+          <Property Name="Proisvoditel_Code" Type="int" Nullable="false" />
+          <Property Name="Postovshik_Code" Type="int" Nullable="false" />
+          <Property Name="Kategoria_Code" Type="int" Nullable="false" />
+          <Property Name="Skidca_Deistvoisha" Type="int" Nullable="false" />
+          <Property Name="Kolichestvo" Type="int" Nullable="false" />
+          <Property Name="Opisanie" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="Isobrajenie" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Vxod">
+          <Key>
+            <PropertyRef Name="Vxod_Code" />
+          </Key>
+          <Property Name="Vxod_Code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="90" Nullable="false" />
+          <Property Name="Parole" Type="nvarchar" MaxLength="90" />
+          <Property Name="Role_Code" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Polsavotel_Vxod">
+          <End Role="Vxod" Type="Self.Vxod" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Polsavotel" Type="Self.Polsavotel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vxod">
+              <PropertyRef Name="Vxod_Code" />
+            </Principal>
+            <Dependent Role="Polsavotel">
+              <PropertyRef Name="Vxod_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sclad_Ismerenie">
+          <End Role="Ismerenie" Type="Self.Ismerenie" Multiplicity="1" />
+          <End Role="Sclad" Type="Self.Sclad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ismerenie">
+              <PropertyRef Name="Ismerenie_Code" />
+            </Principal>
+            <Dependent Role="Sclad">
+              <PropertyRef Name="Ismerenie_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sclad_Kategoria">
+          <End Role="Kategoria" Type="Self.Kategoria" Multiplicity="1" />
+          <End Role="Sclad" Type="Self.Sclad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategoria">
+              <PropertyRef Name="Kategoria_Code" />
+            </Principal>
+            <Dependent Role="Sclad">
+              <PropertyRef Name="Kategoria_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sclad_Postovshik">
+          <End Role="Postovshik" Type="Self.Postovshik" Multiplicity="1" />
+          <End Role="Sclad" Type="Self.Sclad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Postovshik">
+              <PropertyRef Name="Postovshik_Code" />
+            </Principal>
+            <Dependent Role="Sclad">
+              <PropertyRef Name="Postovshik_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sclad_Proisvoditel">
+          <End Role="Proisvoditel" Type="Self.Proisvoditel" Multiplicity="1" />
+          <End Role="Sclad" Type="Self.Sclad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proisvoditel">
+              <PropertyRef Name="Proisvoditel_Code" />
+            </Principal>
+            <Dependent Role="Sclad">
+              <PropertyRef Name="Proisvoditel_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vxod_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Vxod" Type="Self.Vxod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Role_Code" />
+            </Principal>
+            <Dependent Role="Vxod">
+              <PropertyRef Name="Role_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище bdMalashinModelContainer">
+          <EntitySet Name="Ismerenie" EntityType="Self.Ismerenie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategoria" EntityType="Self.Kategoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Polsavotel" EntityType="Self.Polsavotel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Postovshik" EntityType="Self.Postovshik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proisvoditel" EntityType="Self.Proisvoditel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sclad" EntityType="Self.Sclad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vxod" EntityType="Self.Vxod" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Polsavotel_Vxod" Association="Self.FK_Polsavotel_Vxod">
+            <End Role="Vxod" EntitySet="Vxod" />
+            <End Role="Polsavotel" EntitySet="Polsavotel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sclad_Ismerenie" Association="Self.FK_Sclad_Ismerenie">
+            <End Role="Ismerenie" EntitySet="Ismerenie" />
+            <End Role="Sclad" EntitySet="Sclad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sclad_Kategoria" Association="Self.FK_Sclad_Kategoria">
+            <End Role="Kategoria" EntitySet="Kategoria" />
+            <End Role="Sclad" EntitySet="Sclad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sclad_Postovshik" Association="Self.FK_Sclad_Postovshik">
+            <End Role="Postovshik" EntitySet="Postovshik" />
+            <End Role="Sclad" EntitySet="Sclad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sclad_Proisvoditel" Association="Self.FK_Sclad_Proisvoditel">
+            <End Role="Proisvoditel" EntitySet="Proisvoditel" />
+            <End Role="Sclad" EntitySet="Sclad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vxod_Role" Association="Self.FK_Vxod_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Vxod" EntitySet="Vxod" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bdMalashinModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ismerenie">
+          <Key>
+            <PropertyRef Name="Ismerenie_Code" />
+          </Key>
+          <Property Name="Ismerenie_Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ismerenie1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Sclad" Relationship="Self.FK_Sclad_Ismerenie" FromRole="Ismerenie" ToRole="Sclad" />
+        </EntityType>
+        <EntityType Name="Kategoria">
+          <Key>
+            <PropertyRef Name="Kategoria_Code" />
+          </Key>
+          <Property Name="Kategoria_Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kategoria1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Sclad" Relationship="Self.FK_Sclad_Kategoria" FromRole="Kategoria" ToRole="Sclad" />
+        </EntityType>
+        <EntityType Name="Polsavotel">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Familia" Type="String" MaxLength="90" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Imya" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ochestvo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Vxod_Code" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Vxod" Relationship="Self.FK_Polsavotel_Vxod" FromRole="Polsavotel" ToRole="Vxod" />
+        </EntityType>
+        <EntityType Name="Postovshik">
+          <Key>
+            <PropertyRef Name="Postovshik_Code" />
+          </Key>
+          <Property Name="Postovshik_Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Postovshik1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Sclad" Relationship="Self.FK_Sclad_Postovshik" FromRole="Postovshik" ToRole="Sclad" />
+        </EntityType>
+        <EntityType Name="Proisvoditel">
+          <Key>
+            <PropertyRef Name="Proisvoditel_Code" />
+          </Key>
+          <Property Name="Proisvoditel_Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Proisvoditel1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Sclad" Relationship="Self.FK_Sclad_Proisvoditel" FromRole="Proisvoditel" ToRole="Sclad" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Role_Code" />
+          </Key>
+          <Property Name="Role_Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Vxod" Relationship="Self.FK_Vxod_Role" FromRole="Role" ToRole="Vxod" />
+        </EntityType>
+        <EntityType Name="Sclad">
+          <Key>
+            <PropertyRef Name="Artickl" />
+          </Key>
+          <Property Name="Artickl" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Naimenovanie" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ismerenie_Code" Type="Int32" Nullable="false" />
+          <Property Name="Stoimost" Type="Int32" Nullable="false" />
+          <Property Name="Skidca_Maximum" Type="Int32" Nullable="false" />
+          <Property Name="Proisvoditel_Code" Type="Int32" Nullable="false" />
+          <Property Name="Postovshik_Code" Type="Int32" Nullable="false" />
+          <Property Name="Kategoria_Code" Type="Int32" Nullable="false" />
+          <Property Name="Skidca_Deistvoisha" Type="Int32" Nullable="false" />
+          <Property Name="Kolichestvo" Type="Int32" Nullable="false" />
+          <Property Name="Opisanie" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Isobrajenie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Ismerenie" Relationship="Self.FK_Sclad_Ismerenie" FromRole="Sclad" ToRole="Ismerenie" />
+          <NavigationProperty Name="Kategoria" Relationship="Self.FK_Sclad_Kategoria" FromRole="Sclad" ToRole="Kategoria" />
+          <NavigationProperty Name="Postovshik" Relationship="Self.FK_Sclad_Postovshik" FromRole="Sclad" ToRole="Postovshik" />
+          <NavigationProperty Name="Proisvoditel" Relationship="Self.FK_Sclad_Proisvoditel" FromRole="Sclad" ToRole="Proisvoditel" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Vxod">
+          <Key>
+            <PropertyRef Name="Vxod_Code" />
+          </Key>
+          <Property Name="Vxod_Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="90" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Parole" Type="String" MaxLength="90" FixedLength="false" Unicode="true" />
+          <Property Name="Role_Code" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Polsavotel" Relationship="Self.FK_Polsavotel_Vxod" FromRole="Vxod" ToRole="Polsavotel" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_Vxod_Role" FromRole="Vxod" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK_Sclad_Ismerenie">
+          <End Role="Ismerenie" Type="Self.Ismerenie" Multiplicity="1" />
+          <End Role="Sclad" Type="Self.Sclad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ismerenie">
+              <PropertyRef Name="Ismerenie_Code" />
+            </Principal>
+            <Dependent Role="Sclad">
+              <PropertyRef Name="Ismerenie_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sclad_Kategoria">
+          <End Role="Kategoria" Type="Self.Kategoria" Multiplicity="1" />
+          <End Role="Sclad" Type="Self.Sclad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategoria">
+              <PropertyRef Name="Kategoria_Code" />
+            </Principal>
+            <Dependent Role="Sclad">
+              <PropertyRef Name="Kategoria_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Polsavotel_Vxod">
+          <End Role="Vxod" Type="Self.Vxod" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Polsavotel" Type="Self.Polsavotel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vxod">
+              <PropertyRef Name="Vxod_Code" />
+            </Principal>
+            <Dependent Role="Polsavotel">
+              <PropertyRef Name="Vxod_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sclad_Postovshik">
+          <End Role="Postovshik" Type="Self.Postovshik" Multiplicity="1" />
+          <End Role="Sclad" Type="Self.Sclad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Postovshik">
+              <PropertyRef Name="Postovshik_Code" />
+            </Principal>
+            <Dependent Role="Sclad">
+              <PropertyRef Name="Postovshik_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sclad_Proisvoditel">
+          <End Role="Proisvoditel" Type="Self.Proisvoditel" Multiplicity="1" />
+          <End Role="Sclad" Type="Self.Sclad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proisvoditel">
+              <PropertyRef Name="Proisvoditel_Code" />
+            </Principal>
+            <Dependent Role="Sclad">
+              <PropertyRef Name="Proisvoditel_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vxod_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Vxod" Type="Self.Vxod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Role_Code" />
+            </Principal>
+            <Dependent Role="Vxod">
+              <PropertyRef Name="Role_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bdMalashinEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ismerenie" EntityType="Self.Ismerenie" />
+          <EntitySet Name="Kategoria" EntityType="Self.Kategoria" />
+          <EntitySet Name="Polsavotel" EntityType="Self.Polsavotel" />
+          <EntitySet Name="Postovshik" EntityType="Self.Postovshik" />
+          <EntitySet Name="Proisvoditel" EntityType="Self.Proisvoditel" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Sclad" EntityType="Self.Sclad" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Vxod" EntityType="Self.Vxod" />
+          <AssociationSet Name="FK_Sclad_Ismerenie" Association="Self.FK_Sclad_Ismerenie">
+            <End Role="Ismerenie" EntitySet="Ismerenie" />
+            <End Role="Sclad" EntitySet="Sclad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sclad_Kategoria" Association="Self.FK_Sclad_Kategoria">
+            <End Role="Kategoria" EntitySet="Kategoria" />
+            <End Role="Sclad" EntitySet="Sclad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Polsavotel_Vxod" Association="Self.FK_Polsavotel_Vxod">
+            <End Role="Vxod" EntitySet="Vxod" />
+            <End Role="Polsavotel" EntitySet="Polsavotel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sclad_Postovshik" Association="Self.FK_Sclad_Postovshik">
+            <End Role="Postovshik" EntitySet="Postovshik" />
+            <End Role="Sclad" EntitySet="Sclad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sclad_Proisvoditel" Association="Self.FK_Sclad_Proisvoditel">
+            <End Role="Proisvoditel" EntitySet="Proisvoditel" />
+            <End Role="Sclad" EntitySet="Sclad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vxod_Role" Association="Self.FK_Vxod_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Vxod" EntitySet="Vxod" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище bdMalashinModelContainer" CdmEntityContainer="bdMalashinEntities">
+          <EntitySetMapping Name="Ismerenie">
+            <EntityTypeMapping TypeName="bdMalashinModel.Ismerenie">
+              <MappingFragment StoreEntitySet="Ismerenie">
+                <ScalarProperty Name="Ismerenie_Code" ColumnName="Ismerenie_Code" />
+                <ScalarProperty Name="Ismerenie1" ColumnName="Ismerenie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategoria">
+            <EntityTypeMapping TypeName="bdMalashinModel.Kategoria">
+              <MappingFragment StoreEntitySet="Kategoria">
+                <ScalarProperty Name="Kategoria_Code" ColumnName="Kategoria_Code" />
+                <ScalarProperty Name="Kategoria1" ColumnName="Kategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Polsavotel">
+            <EntityTypeMapping TypeName="bdMalashinModel.Polsavotel">
+              <MappingFragment StoreEntitySet="Polsavotel">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Familia" ColumnName="Familia" />
+                <ScalarProperty Name="Imya" ColumnName="Imya" />
+                <ScalarProperty Name="Ochestvo" ColumnName="Ochestvo" />
+                <ScalarProperty Name="Vxod_Code" ColumnName="Vxod_Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Postovshik">
+            <EntityTypeMapping TypeName="bdMalashinModel.Postovshik">
+              <MappingFragment StoreEntitySet="Postovshik">
+                <ScalarProperty Name="Postovshik_Code" ColumnName="Postovshik_Code" />
+                <ScalarProperty Name="Postovshik1" ColumnName="Postovshik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proisvoditel">
+            <EntityTypeMapping TypeName="bdMalashinModel.Proisvoditel">
+              <MappingFragment StoreEntitySet="Proisvoditel">
+                <ScalarProperty Name="Proisvoditel_Code" ColumnName="Proisvoditel_Code" />
+                <ScalarProperty Name="Proisvoditel1" ColumnName="Proisvoditel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="bdMalashinModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Role_Code" ColumnName="Role_Code" />
+                <ScalarProperty Name="Role1" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sclad">
+            <EntityTypeMapping TypeName="bdMalashinModel.Sclad">
+              <MappingFragment StoreEntitySet="Sclad">
+                <ScalarProperty Name="Artickl" ColumnName="Artickl" />
+                <ScalarProperty Name="Naimenovanie" ColumnName="Naimenovanie" />
+                <ScalarProperty Name="Ismerenie_Code" ColumnName="Ismerenie_Code" />
+                <ScalarProperty Name="Stoimost" ColumnName="Stoimost" />
+                <ScalarProperty Name="Skidca_Maximum" ColumnName="Skidca_Maximum" />
+                <ScalarProperty Name="Proisvoditel_Code" ColumnName="Proisvoditel_Code" />
+                <ScalarProperty Name="Postovshik_Code" ColumnName="Postovshik_Code" />
+                <ScalarProperty Name="Kategoria_Code" ColumnName="Kategoria_Code" />
+                <ScalarProperty Name="Skidca_Deistvoisha" ColumnName="Skidca_Deistvoisha" />
+                <ScalarProperty Name="Kolichestvo" ColumnName="Kolichestvo" />
+                <ScalarProperty Name="Opisanie" ColumnName="Opisanie" />
+                <ScalarProperty Name="Isobrajenie" ColumnName="Isobrajenie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="bdMalashinModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vxod">
+            <EntityTypeMapping TypeName="bdMalashinModel.Vxod">
+              <MappingFragment StoreEntitySet="Vxod">
+                <ScalarProperty Name="Vxod_Code" ColumnName="Vxod_Code" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Parole" ColumnName="Parole" />
+                <ScalarProperty Name="Role_Code" ColumnName="Role_Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
